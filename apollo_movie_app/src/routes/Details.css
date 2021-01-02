@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Assistant&family=Bebas+Neue&display=swap');
 
 .container--details{
-  height : 100vh;
   padding : 12vh 12vw;
   -ms-user-select: none;
   -moz-user-select: -moz-none;
@@ -10,7 +9,6 @@
   user-select: none;
   display : flex;
   justify-content: center;
-  align-items: center;
 }
 
 .container .container__loader{
@@ -50,24 +48,25 @@
   opacity : 0;
   transform: translateY(10px);
   animation: popFromBottom 0.5s ease-in-out forwards;
-  display : flex;
   background-color: rgb(41, 40, 40);
+  display : grid;
+  grid-template-columns: 1fr 3.5fr;
+  grid-template-rows: 100px 1fr;
+  grid-row-gap: 10px;
+  grid-column-gap: 30px;
+  grid-template-areas: 
+    "header header"
+    "poster content";
+  min-height : 520px;
 }
 
-.container__movie .movie__column{
-  width : 100%;
-  height : 74vh;
+.container__movie .movie__header{
+  grid-area: header;
 }
 
-.movie__column .movie__poster{
-  width : 47%;
-  margin-bottom : 15px;
-}
-
-.movie__column .movie__headline{
+.movie__header .movie__headline{
   margin-bottom : 15px;
   font-family: 'Bebas Neue', cursive;
-
 }
 
 .movie__headline .movie__title{
@@ -84,14 +83,24 @@
   opacity : 0.8;
 }
 
-.movie__column .movie__genres{
+.movie__header .movie__genres{
   display : flex;
   opacity : 0.8;
 }
 
-.movie__genres .movie__genre:not(:last-child)::after{
+.movie__header .movie__genre:not(:last-child)::after{
   content : ",";
   margin-right : 5px;
+}
+
+
+.container__movie .movie__poster{
+  grid-area : poster;
+  width : 100%;
+}
+
+.container__movie .movie__description{
+  grid-area: content;
 }
 
 .container__movie .movie__description{
@@ -108,6 +117,27 @@
   display : none;
 }
 
+.container__movie .movie__recommends{
+  margin-top : 35px;
+  width : 450%;
+  font-family: 'Assistant', sans-serif;
+}
+
+.movie__recommends .recommends__text{
+  font-size : 25px;
+  font-weight: 500;
+  opacity: 0.8;
+  padding-bottom : 8px;
+  margin-bottom : 20px;
+  border-bottom: 1.5px solid gray;
+}
+
+.movie__recommends .recommends__movies{
+  display : grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-auto-rows: min-content;
+  grid-gap : 15px;
+}
 
 
 @keyframes wave {

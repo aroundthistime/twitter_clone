@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-
+import "./Movie.css";
 
 const Movie = ({id, poster}) => {
     return (
