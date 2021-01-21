@@ -8,15 +8,12 @@ import Loader from "./Loader";
 
 function App() {
   const [init, setInit] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] =  useState(false);
   const [userObj, setUserObj] = useState(null);
   useEffect(() => {
     authService.onAuthStateChanged((user) => {
       if (user){
-        setIsLoggedIn(true);
         setUserObj(user);
       } else{
-        setIsLoggedIn(false);
         setUserObj(null);
       }
       setInit(true);
@@ -25,7 +22,7 @@ function App() {
   return (
     <>
       {init ? (
-        <AppRouter isLoggedIn={isLoggedIn} userObj={userObj}></AppRouter>
+        <AppRouter isLoggedIn={Boolean(userObj)} userObj={userObj}></AppRouter>
       ) : (
         <Loader />
       )}

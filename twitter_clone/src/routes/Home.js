@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react/cjs/react.development";
+import Tweet from "../components/Tweet";
 import { dbService } from "../fbase";
 
 export default ({userObj}) => {
@@ -52,9 +53,7 @@ export default ({userObj}) => {
             </div>
             <ul>
                 {tweets.map(tweet => (
-                    <li key={tweet.id}>
-                        <h4>{tweet.text}</h4>
-                    </li>
+                    <Tweet key={tweet.id} tweetObj={tweet} isMyTweet={tweet.creatorId === userObj.uid}/>
                 ))}
             </ul>
         </>
